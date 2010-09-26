@@ -1,0 +1,27 @@
+<?php
+
+function superblock_superblocks() {
+  return array(
+    'node_fusion' => array(
+      'class' => 'SuperBlockNodeFusion',
+      'inputs' => array(
+        'node1' => 'SuperBlockInputNode',
+        'node2' => 'SuperBlockInputNode',
+      ),
+    ),
+  );
+}
+
+function superblock_init() {
+  $superblocks = module_invoke_all('superblocks');
+  $context = butler_context();
+
+  // Load this from somewhere...
+  $node1 = new SuperBlockInputNode($context);
+  $node2 = new SuperBlockInputNode($context);
+  $node1->set(array('type' => 'context', 'value' => 'node'));
+  $node2->set(array('type' => 'node', 'value' => 2));
+
+  $object = new $superblocks['node_fusion']['class'](array('node1' => $input1, 'node2' => $input2), $context);
+  print $object->render();
+}

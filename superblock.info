@@ -1,0 +1,11 @@
+; $Id$
+
+name = Superblock
+description = Provides superblocks that can take input based on context.
+dependencies[] = butler
+version = VERSION
+core = 7.x
+
+files[] = superblock.module
+files[] = superblock.input.inc
+files[] = superblock.block.inc
